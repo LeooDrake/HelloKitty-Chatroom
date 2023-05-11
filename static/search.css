@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
+
+body{ text-align: center;
+    width: 100vw;
+    background-color: cornflowerblue;
+
+}
+
+img {width: 100px;
+    height: 150px;}
+
+h1,h3 {
+    margin-top: 3%;
+    font-family: 'Darumadrop One', cursive;
+    color: pink;
+}
+p, label {
+    color: blanchedalmond;
+    font-weight: bold;
+}
+
+nav {
+    background-color: palevioletred;
+    text-align: center;
+}
+
+nav ul{
+    list-style:none;
+    margin: 0;
+    padding: 0;
+}
+nav li{display: inline-block}
+
+nav a { 
+
+    display: inline-block;
+    color:blanchedalmond;
+    padding: 10px;
+    text-decoration: none;
+    list-style-type: none;}
+
+
+
+nav a:hover {
+    background-color:plum;
+  }
+.user-input {margin-top: 5vh;}

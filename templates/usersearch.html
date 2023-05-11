@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo's Chat room</title>
+    <link rel="stylesheet" type="text/css" href="/static/search.css">
+
+</head>
+<body>
+    <header>
+        <h1> Leo's Chat room</h1>
+        <div>
+            <img src="https://www.freepnglogos.com/uploads/hello-kitty-png/hello-kitty-borders-images-and-backgrounds-2.png">
+        </div>
+        <nav>
+            <ul>
+                <li><a link href='/'>Home Page</a></li>
+                <li><a link href='/login'>Login</a></li>
+                <li><a link href='/signup'>Sign up!</a></li>
+                <li><a link href='/logout'>Logout</a></li>
+
+            </ul>
+        </nav>
+    </header>       
+    <h3>Search for users here</h3>
+    <p>If user exists you may chat with them immediately!</p>
+    <form id='form' method="post" action="/api/search">
+        <label class="user-input">Users email address:</label>
+        <input type="text" class="user-input" id="input" name="email"></input>
+        <input type="submit"class="user-input" id="submit">
+
+
+    </form>
+
+    {% for i in friends%}
+        {% if i['id'] %}
+        <button type="submit" action="/api/search" name='id'  onclick="myfunction({{ i['email']}})" value="{{ i['id']}}">{{i['name']}}</button>
+        {% else %}
+        {% endif %}
+    {% endfor %}
+
+
+
+        
+    <script>
+
+        function myfunction(email); {
+            document.getElementById('input').remove()
+            let hiddeninput = document.createElement('input')
+            hiddeninput.setAttribute('type','hidden')
+            hiddeninput.setAttribute('value',email)
+            hiddeninput.setAttribute('name',email)
+            submit_button = document.getElementById('submit')
+            document.body.appendChild(hiddeninput)
+            submit_button.click()
+
+        }
+
+    </script>
+</body>
+</html>

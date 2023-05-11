@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo's Chatroom Login</title>
+    <link rel="stylesheet" href="../static/homepage.css">
+</head>
+<body>
+<header>    
+    <h1> Leo's Chat room</h1>
+    <div>
+        <img src="https://www.freepnglogos.com/uploads/hello-kitty-png/hello-kitty-borders-images-and-backgrounds-2.png">
+    </div>
+    <nav>
+        <ul>
+            <li><a link href='/'>homepage</a></li>
+            <li><a link href='/signup'>Sign up!</a></li>
+            <li><a link href='/logout'>Logout</a></li>
+
+        </ul>
+    </nav>
+</header>
+    <form method="post" action="/api/login">
+        <label>Email:</label>
+        <input type="text" name="email"></input>
+        <label>Password:</label>
+        <input type="text" name="password"></input>
+        <input type="submit">        
+    </form>
+</body>
+</html>

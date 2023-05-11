@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div class="chat-room">
+      <div class="chat-messages">
+          {% for message in messages %}
+          <div class="chat-message">
+
+                {% if message['fromuser'] == sender %}
+                    <span class="chat-message-sender">{{ sender_name }}:</span>
+                {% else %}
+                    <span class="chat-message-sender">{{ receiver_name }}:</span>
+                {% endif %}
+            <span class="chat-message-text">{{ message['content'] }}</span>
+          {% endfor %}
+          </div>  
+        </div>  
+      </div>
+  <form class="chat-input" method="post" action="/api/chatroom">
+    <input type="text" class="chat-input-field" name="textmessage" placeholder="Type your message...">
+    <button id="submit" class="chat-input-button">Send</button>
+  </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+
+        var socket = io();
+        socket.on('connect', function() {
+            socket.emit('my event', {data: "I'm connected!"});
+        });
+          
+        // V below
+        const chatmessages = document.querySelector(".chat-message"); 
+        // 
+        const submit_button = document.getElementById("submit");
+        const textInput = document.querySelector("input")
+
+
+        submit_button.addEventListener("click", () => {
+
+        
+        // alert('functioning')
+        alert(chatmessages[chatmessages.length - 1])
+        socket.emit("message", { message: textInput.value });
+        });
+
+
+        socket.on("new-message", (data) => {
+
+        const span = document.createElement("span");
+        span.classList+= "chat-message-text" ;
+        span.textContent = data.message;
+        chatmessages.appendChild(span) // where should new message be put
+
+        });
+        
+    </script>
+
+  </body>
+
+</html>
