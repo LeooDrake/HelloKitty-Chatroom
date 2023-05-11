@@ -87,6 +87,21 @@ def id_to_name(id):
     connection.close()
     return name[0]     
 
+def deleteaccount_with_id(id):
+    connection=psycopg2.connect(user='postgres', port='5433', password=dbpassword, dbname='chat_room')
+    cursor = connection.cursor()
+    cursor.execute('DELETE FROM users WHERE id=%s;',[id])
+    connection.commit()
+    connection.close()
+
+def updatepassword_with_id(password,id):
+    connection=psycopg2.connect(user='postgres', port='5433', password=dbpassword, dbname='chat_room')
+    cursor = connection.cursor()
+    cursor.execute('UPDATE users SET hashedpassword=%s WHERE id=%s;',[password,id])
+    connection.commit()
+    connection.close() 
+
+
 def userid_to_friends(userid):
     connection=psycopg2.connect(user='postgres', port='5433', password=dbpassword, dbname='chat_room')
     cursor = connection.cursor()

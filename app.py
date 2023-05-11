@@ -18,7 +18,6 @@ def index():
         return render_template('homepage.html')
     elif user_id==None:
         return render_template('homepage.html')
-
     else:
         name =users.id_to_name(user_id)
         return render_template('homepage.html',name=name)
@@ -106,7 +105,6 @@ def handle_message(data):
     print('received message: ' + data["message"])
     emit('new-message', data, broadcast=True)
 
-
 @app.route('/api/chatroom',methods=['POST'])
 def chatroom_api():
     sender = session.get('user_id')
@@ -114,6 +112,31 @@ def chatroom_api():
     message = request.form.get('textmessage')
     users.send_message(message,sender,receiver)
     return redirect('/chatroom')
+
+@app.route('/account')
+def account():
+    user_id= session.get('user_id','')
+    if user_id:
+        return render_template('account.html')
+    else:
+        return redirect('/login') 
+    
+@app.route('/deleteaccount',methods=['POST'])
+def deleteaccount():
+    user_id=session.get('user_id','')
+    users.deleteaccount_with_id(user_id)
+    return redirect('/logout')
+    
+@app.route('/updatepassword', methods=['POST'])
+def updatepassword():
+    user_id=session.get('user_id','')
+    password =request.form.get('password')
+    hashedpassword =bcrypt.hashpw(password.encode(),bcrypt.gensalt()).decode()
+    users.updatepassword_with_id(hashedpassword,user_id)
+    return redirect('/login')
+
+
+# can be either /update password or /deleteaccount
 
 if __name__ == '__main__':
     socketio.run(app, debug=True, port=os.getenv("PORT", default=5000))
