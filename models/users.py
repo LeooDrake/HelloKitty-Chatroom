@@ -28,6 +28,7 @@ def check_user(email): # returns id if email and password r correct
     cursor = connection.cursor()
 
     cursor.execute("SELECT id,hashedpassword FROM users WHERE email=%s;",[email])
+    alert(email)
     results =cursor.fetchall()
     id_and_hashedpassword= results[0]
     connection.commit()

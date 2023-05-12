@@ -54,7 +54,7 @@ def api_login():
     email= request.form.get('email')
     password = request.form.get('password')
     #user = hashpasssword
-    user_info = users.check_user(email)
+    user_info = users.check_user(email) # could be causign proble 
     isValidPassword = bcrypt.checkpw(password.encode(), user_info[1].encode())
     if isValidPassword:
         session['user_id']= user_info[0]
@@ -107,7 +107,7 @@ def handle_message(data):
     #  to database here . note: need to get user id aswell 
     #     sender = session.get('user_id')
     session.get
-    alert(data )
+    print(data )
     print('received message: ' + data["message"])
     emit('new-message', data, broadcast=True) # sends message to everyone else on socket
 
