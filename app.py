@@ -5,7 +5,7 @@ import psycopg2
 from models import users
 from datetime import datetime
 from flask_socketio import SocketIO,send, emit 
-# import webbrowser
+#import webbrowser
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "My secret key"
@@ -104,8 +104,12 @@ def chatroom():
 
 @socketio.on('message')
 def handle_message(data):
+    #  to database here . note: need to get user id aswell 
+    #     sender = session.get('user_id')
+    session.get
+    alert(data )
     print('received message: ' + data["message"])
-    emit('new-message', data, broadcast=True)
+    emit('new-message', data, broadcast=True) # sends message to everyone else on socket
 
 @app.route('/api/chatroom',methods=['POST'])
 def chatroom_api():

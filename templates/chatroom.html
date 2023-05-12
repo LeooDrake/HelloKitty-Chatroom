@@ -54,11 +54,13 @@
         // alert(receiver)
         submit_button.addEventListener("click", () => {
         //alert('chatmessage')
-        socket.emit("message", { message: textInput.value});
+        socket.emit("message", { message: [textInput.value,sender,receiver]});
         });
 
 
-        socket.on("new-message", (data) => {
+        socket.on("new-message", (data) => { 
+
+          // receives new message 
         const chatMessageDiv = document.createElement('div'); // chat- message div
         chatMessageDiv.classList+='chat-message' 
 
@@ -67,13 +69,13 @@
         receiverspan.textContent = `${receiver}:`
 
 
-        const span = document.createElement("span"); // message
+        const span = document.createElement("span"); // message   element formated
         span.classList+= "chat-message-text" ;
         span.textContent = data.message;
 
         chatMessageDiv.appendChild(receiverspan)
         chatMessageDiv.appendChild(span)
-        chatmessages.insertAdjacentElement('beforeend',chatMessageDiv) // where should new message be put
+        chatmessages.insertAdjacentElement('beforeend',chatMessageDiv) // last child of chat message
         
         });
         
