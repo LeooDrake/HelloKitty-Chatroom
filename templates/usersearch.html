@@ -36,7 +36,7 @@
 
     {% for i in friends%}
         {% if i['id'] %}
-        <button type="submit" action="/api/search" name='id'  onclick="myfunction({{ i['email']}})" value="{{ i['id']}}">{{i['name']}}</button>
+        <!-- <button type="submit" action="/api/search" name='id'  onclick="myfunction({{ i['email']}})" value="{{ i['id']}}">{{i['name']}}</button> -->
         {% else %}
         {% endif %}
     {% endfor %}

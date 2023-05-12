@@ -10,6 +10,7 @@
 <body>
   {% block content %}
     <h6 class="hidden">{{ receiver_name }}</h6>
+    <h5 class="hidden"> {{ sender_name }} </h5>
   {% endblock %}
 
     <div class="chat-room">
@@ -32,6 +33,7 @@
     <input type="text" class="chat-input-field" name="textmessage" placeholder="Type your message...">
     <button id="submit" class="chat-input-button">Send</button>
   </form>
+  <!-- send to websocket dont do post!!!! -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8">
@@ -47,21 +49,23 @@
         const submit_button = document.getElementById("submit");
         const textInput = document.querySelector("input")
         const receiver = document.querySelector('h6').textContent
+        const sender = document.querySelector('h5').textContent
 
         // alert(receiver)
         submit_button.addEventListener("click", () => {
         //alert('chatmessage')
-        socket.emit("message", { message: textInput.value });
+        socket.emit("message", { message: textInput.value});
         });
 
 
         socket.on("new-message", (data) => {
         const chatMessageDiv = document.createElement('div'); // chat- message div
-        chatMessageDiv.classList+='chat-message'
+        chatMessageDiv.classList+='chat-message' 
 
         const receiverspan = document.createElement('span'); // sender div
         receiverspan.classList+="chat-message-sender";
         receiverspan.textContent = `${receiver}:`
+
 
         const span = document.createElement("span"); // message
         span.classList+= "chat-message-text" ;
