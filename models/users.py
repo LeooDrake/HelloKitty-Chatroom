@@ -8,7 +8,7 @@ from flask_socketio import SocketIO,send, emit
 os.environ['DATABASE_URL'] = 'postgres://project2_v4tl_user:oA2wQuw0UVGbUmLir24fl1e7FH2Zv4gX@dpg-ch8g4u02qv2864t45o3g-a/project2_v4tl'
 os.environ['PGDATABASE'] = 'chat_room'
 os.environ['PGPORT'] = '5432'
-os.environ['HOST'] = 'dpg-ch8g4u02qv2864t45o3g-a'
+os.environ['PGHOST'] = 'dpg-ch8g4u02qv2864t45o3g-a'
 os.environ['PGPASSWORD']= 'oA2wQuw0UVGbUmLir24fl1e7FH2Zv4gX'
 os.environ['PGUSER'] = 'project2_v4tl_user'
 
@@ -46,6 +46,7 @@ def id_to_email(id):
 
 def email_in_db(email):
     # connection=psycopg2.connect(user='postgres', port='5433', password=dbpassword, dbname='chat_room')
+    print("my host ="+ os.getenv("PGHOST"))
     connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
     connection = psycopg2.connect(os.getenv("DATABASE_URL"))        
     cursor = connection.cursor()
