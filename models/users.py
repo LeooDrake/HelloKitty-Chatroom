@@ -6,7 +6,12 @@ import psycopg2
 # import dotenv
 from datetime import datetime
 from flask_socketio import SocketIO,send, emit
-
+os.environ['DATABASE_URL'] = 'postgres://project2_v4tl_user:oA2wQuw0UVGbUmLir24fl1e7FH2Zv4gX@dpg-ch8g4u02qv2864t45o3g-a/project2_v4tl'
+os.environ['PGDATABASE'] = 'chat_room'
+os.environ['PGPORT'] = 5432
+os.environ['HOST'] = 'dpg-ch8g4u02qv2864t45o3g-a'
+os.environ['PGPASSWORD']= 'oA2wQuw0UVGbUmLir24fl1e7FH2Zv4gX'
+os.environ['PGUSER'] = 'project2_v4tl_user'
 
 def new_user(name,email,password):
     connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
