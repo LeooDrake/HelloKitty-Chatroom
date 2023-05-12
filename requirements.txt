@@ -1,3 +1,8 @@
 Flask
 Gunicorn
 psycopg2
+bcrypt
+date
+dotenv
+datetime
+flask_socketio
