@@ -39,7 +39,9 @@ def api_signup():
         hashedpassword =bcrypt.hashpw(password.encode(),bcrypt.gensalt()).decode()
         users.new_user(name,email,hashedpassword)
         # app.config["SECRET_KEY"] = "My secret key"
-        return redirect('http://127.0.0.1:5000/')
+        # return redirect('http://127.0.0.1:5000/')
+        return redirect('/')
+
 
 @app.route('/login')
 def login():

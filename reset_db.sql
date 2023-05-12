@@ -1,6 +1,3 @@
-CREATE DATABASE chat_room;
-
-\c chat_room
 
 CREATE TABLE users(id SERIAL PRIMARY KEY, email TEXT, firstname TEXT NULL, hashedpassword TEXT);
 
