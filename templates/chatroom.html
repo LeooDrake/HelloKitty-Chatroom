@@ -54,7 +54,7 @@
         // alert(receiver)
         submit_button.addEventListener("click", () => {
         //alert('chatmessage')
-        socket.emit("message", { message: [textInput.value,sender,receiver]});
+        socket.emit("message", { message: [textInput.value]});
         });
 
 
