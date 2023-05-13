@@ -4,7 +4,7 @@ import bcrypt
 import psycopg2
 from models import users
 from datetime import datetime
-from flask_socketio import SocketIO,send, emit 
+from flask_socketio import SocketIO, send, emit 
 #import webbrowser
 
 app = Flask(__name__)
